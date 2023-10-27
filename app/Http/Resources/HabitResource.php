@@ -16,12 +16,28 @@ class HabitResource extends JsonResource
     {
         $progress = [];
 
-        foreach ($this->progress as $day)
+        foreach (['2023-10-27'] as $date) // TODO: hardcoded
         {
-            $progress[$day->date->toDateString()] = [
-                'count' => $day->count,
-                'done' => $day->done,
-            ];
+            foreach ($this->progress as $day)
+            {
+                if ($day->date->toDateString() == $date)
+                {
+                    $progress[$date] = [
+                        'count' => $day->count,
+                        'done' => $day->done,
+                    ];
+
+                    continue;
+                }
+            }
+
+            if ( ! isset($progress[$date]))
+            {
+                $progress[$date] = [
+                    'count' => 0,
+                    'done' => 0,
+                ];
+            }
         }
 
         return [
