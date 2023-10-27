@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use App\Models\HabitCategory;
@@ -59,9 +60,9 @@ class HabitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Habit $habit)
+    public function destroy(Request $request, Habit $habit)
     {
-        if (! $this->user()->can('delete', $habit))
+        if (! $request->user()->can('delete', $habit))
         {
             return response()->json('Unauthorized', 401);
         }
