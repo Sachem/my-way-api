@@ -26,6 +26,7 @@ class HabitResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'name' => $this->name,
             'category_id' => $this->category_id,
             'priority' => $this->priority,
             'measurable' => $this->measurable,
