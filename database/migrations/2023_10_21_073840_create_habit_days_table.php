@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('habit_id')->index('fk_habit_days_habits_idx');
             $table->date('date')->nullable();
-            $table->unsignedInteger('count')->nullable();
+            $table->unsignedInteger('progress')->nullable();
             $table->tinyInteger('done')->nullable();
             $table->timestamps();
             $table->softDeletes();

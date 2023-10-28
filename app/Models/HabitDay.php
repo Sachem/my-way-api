@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $habit_id
  * @property Carbon|null $date
- * @property int|null $count
+ * @property int|null $progress
  * @property int|null $done
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -34,14 +34,14 @@ class HabitDay extends Model
 	protected $casts = [
 		'habit_id' => 'int',
 		'date' => 'datetime',
-		'count' => 'int',
+		'progress' => 'int',
 		'done' => 'int'
 	];
 
 	protected $fillable = [
 		'habit_id',
 		'date',
-		'count',
+		'progress',
 		'done'
 	];
 

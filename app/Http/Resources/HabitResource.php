@@ -21,10 +21,10 @@ class HabitResource extends JsonResource
         {
             foreach ($this->progress as $day)
             {
-                if ($day->date->toDateString() == $date)
+                if ($day->date == $date)
                 {
                     $progress[$key] = [
-                        'count' => $day->count,
+                        'progress' => $day->progress,
                         'done' => $day->done,
                     ];
 
@@ -35,7 +35,7 @@ class HabitResource extends JsonResource
             if ( ! isset($progress[$key]))
             {
                 $progress[$key] = [
-                    'count' => 0,
+                    'progress' => 0,
                     'done' => 0,
                 ];
             }

@@ -38,7 +38,9 @@ class HabitController extends Controller
         $habit->goal = $validated['goal'] ?? NULL;
         $habit->save();
 
-        return response()->json($habit, 200);
+        $habit->load('progress');
+
+        return response()->json(new HabitResource($habit), 200);
     }
 
     /**
