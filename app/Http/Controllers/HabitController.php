@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\HabitRequest;
 use App\Http\Resources\HabitResource;
+use App\Http\Resources\HabitCollection;
 use App\Models\Habit;
 use App\Models\HabitCategory;
 
@@ -19,11 +20,7 @@ class HabitController extends Controller
             ->where('user_id', auth()->user()->id)
             ->get();
         
-        return response()->json(
-            // $habits, 
-           HabitResource::collection($habits), 
-        200);
-        
+        return new HabitCollection($habits);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class HabitResource extends JsonResource
 {
@@ -16,13 +17,13 @@ class HabitResource extends JsonResource
     {
         $progress = [];
 
-        foreach (['2023-10-27'] as $date) // TODO: hardcoded
+        foreach ([Carbon::today()] as $key => $date) // TODO: addmore dates (see Habit model)
         {
             foreach ($this->progress as $day)
             {
                 if ($day->date->toDateString() == $date)
                 {
-                    $progress[$date] = [
+                    $progress[$key] = [
                         'count' => $day->count,
                         'done' => $day->done,
                     ];
@@ -31,9 +32,9 @@ class HabitResource extends JsonResource
                 }
             }
 
-            if ( ! isset($progress[$date]))
+            if ( ! isset($progress[$key]))
             {
-                $progress[$date] = [
+                $progress[$key] = [
                     'count' => 0,
                     'done' => 0,
                 ];

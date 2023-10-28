@@ -13,7 +13,17 @@ class HabitProgressController extends Controller
      */
     public function markCompleted(Request $request, Habit $habit)
     {
-        //
+        if ($habit->measurable)
+        {
+            return response()->json('Forbidden', 403);
+        }
+
+        HabitDay::updateOrCreate(
+            ['habit_id' => $habit->id, 'date' => $request->date],
+            ['done' => $request->done]
+        );
+
+        return response()->json('OK', 200);
     }
 
     /**
@@ -21,7 +31,12 @@ class HabitProgressController extends Controller
      */
     public function changeProgress(Request $request, Habit $habit)
     {
-        //
+        if ( ! $habit->measurable)
+        {
+            return response()->json('Forbidden', 403);
+        }
+        
+        return response()->json('OK', 200);
     }
 
 }
