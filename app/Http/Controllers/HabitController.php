@@ -61,7 +61,7 @@ class HabitController extends Controller
         $input = $request->all();
         $habit->fill($input)->save();
 
-        return response()->json($habit, 200);
+        return response()->json(new HabitResource($habit), 200);
     }
 
     /**
