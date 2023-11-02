@@ -33,7 +33,6 @@ class HabitDay extends Model
 
 	protected $casts = [
 		'habit_id' => 'int',
-		'date' => 'datetime',
 		'progress' => 'int',
 		'done' => 'int'
 	];

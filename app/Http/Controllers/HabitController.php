@@ -16,7 +16,7 @@ class HabitController extends Controller
      */
     public function index()
     {
-        $habits = Habit::with('progress')
+        $habits = Habit::with('recent_progress')
             ->where('user_id', auth()->user()->id)
             ->get();
         
@@ -38,7 +38,7 @@ class HabitController extends Controller
         $habit->goal = $validated['goal'] ?? NULL;
         $habit->save();
 
-        $habit->load('progress');
+        $habit->load('recent_progress');
 
         return response()->json(new HabitResource($habit), 200);
     }
@@ -60,6 +60,8 @@ class HabitController extends Controller
     {
         $input = $request->all();
         $habit->fill($input)->save();
+
+        $habit->load('recent_progress');
 
         return response()->json(new HabitResource($habit), 200);
     }

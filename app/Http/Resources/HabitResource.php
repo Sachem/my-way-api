@@ -17,28 +17,42 @@ class HabitResource extends JsonResource
     {
         $progress = [];
 
-        foreach ([Carbon::today()] as $key => $date) // TODO: addmore dates (see Habit model)
-        {
-            foreach ($this->progress as $day)
-            {
-                if ($day->date == $date)
-                {
-                    $progress[$key] = [
-                        'progress' => $day->progress,
-                        'done' => $day->done,
-                    ];
+        $i = 0;
+        $finalDateString = Carbon::now()->subDays(15)->toDateString();
+        $date = Carbon::now();
+        $dateString = $date->toDateString();
 
-                    continue;
+        while ($dateString != $finalDateString) 
+        {
+            if ($this->recent_progress !== null)
+            {
+                foreach ($this->recent_progress as $day)
+                {
+                    if ($day->date == $dateString)
+                    {
+                        $progress[$i] = [
+                            'progress' => $day->progress,
+                            'done' => $day->done,
+                            'date' => $dateString,
+                        ];
+
+                        continue;
+                    }
                 }
             }
 
-            if ( ! isset($progress[$key]))
+            if ( ! isset($progress[$i]))
             {
-                $progress[$key] = [
+                $progress[$i] = [
                     'progress' => 0,
                     'done' => 0,
+                    'date' => $dateString,
                 ];
             }
+
+            $i++;
+            $date->subDay();
+            $dateString = $date->toDateString();
         }
 
         return [

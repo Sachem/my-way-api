@@ -27,10 +27,20 @@ class HabitCollection extends ResourceCollection
     {
         $dates = [];
 
-        foreach ([Carbon::today()] as $key => $date) // TODO: add more dates (see Habit model)
-        {
-            $dates[$key] = $date->toDateString();
+        $i = 0;
+        $finalDateString = Carbon::now()->subDays(15)->toDateString();
+        $date = Carbon::now();
 
+        while ($date->toDateString() != $finalDateString) 
+        {
+            $dates[$i] = [
+                'date' => $date->toDateString(),
+                'dayOfWeek' => $date->shortEnglishDayOfWeek,
+                'dayInMonth' => $date->day,
+            ];
+
+            $i++;
+            $date->subDay();        
         }
 
         return [
