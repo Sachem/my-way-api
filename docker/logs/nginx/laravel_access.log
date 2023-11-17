@@ -1,0 +1,2 @@
+192.168.96.1 - - [17/Nov/2023:05:33:20 +0000] "GET / HTTP/1.1" 404 2311 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+192.168.96.1 - - [17/Nov/2023:05:33:25 +0000] "GET /api HTTP/1.1" 200 98 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
