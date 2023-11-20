@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\HabitController;
 use App\Http\Controllers\HabitProgressController;
 
@@ -18,7 +18,7 @@ use App\Http\Controllers\HabitProgressController;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function(){
+// Route::middleware('auth:sanctum')->group(function(){
     
     Route::get('/user', function (Request $request) {
         return $request->user();
@@ -30,11 +30,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/habit/mark-completed/{habit}', [HabitProgressController::class, 'markCompleted']);
     Route::post('/habit/change-progress/{habit}', [HabitProgressController::class, 'changeProgress']);
         
-});
+// });
 
 Route::get('/', function (Request $request) {
     return response()->json('Hello, you requested "My Way" API\'s root path. Nothing here, but glad to see you :)', 200);
 });
 
-Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
-Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
+Route::get('auth/socialite/{provider}', [SocialiteController::class, 'redirectToProvider']);
+Route::get('auth/socialite/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);

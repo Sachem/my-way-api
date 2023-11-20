@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\JsonResponse;
 use Laravel\Socialite\Facades\Socialite;
 
-class LoginController extends Controller
+class SocialiteController extends Controller
 {
     /**
      * Redirect the user to the Provider authentication page.
@@ -22,7 +23,15 @@ class LoginController extends Controller
             return $validated;
         }
 
-        return Socialite::driver($provider)->stateless()->redirect();
+        // return Socialite::driver($provider)->stateless()->redirect(); // use this for monolith apps
+
+        // for SPA we want to return this URL to front-end and handle auth there
+        return response()->json([
+            'url' => Socialite::driver($provider)
+                         ->stateless()
+                         ->redirect()
+                         ->getTargetUrl(),
+        ]);
     }
 
     /**
@@ -62,9 +71,14 @@ class LoginController extends Controller
                 'avatar' => $user->getAvatar()
             ]
         );
+
+        // TODO: re-use authentication token or invalidate previous one
         $token = $userCreated->createToken('token-name')->plainTextToken;
 
-        return response()->json($userCreated, 200, ['Access-Token' => $token]);
+        return response()->json([
+            'user' => $userCreated,
+            'access_token' => $token
+        ]);
     }
 
     /**
