@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class HabitCategorySeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class HabitCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('habit_categories')->insert([
+        DB::table('habit_categories')->insert([[
             'name' => 'Spirit',
         ],[
             'name' => 'Mind',
@@ -22,6 +23,6 @@ class HabitCategorySeeder extends Seeder
             'name' => 'Addictions',
         ],[
             'name' => 'Health',
-        ]);
+        ]]);
     }
 }

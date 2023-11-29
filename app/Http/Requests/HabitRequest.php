@@ -37,6 +37,7 @@ class HabitRequest extends FormRequest
         if (request()->input('measurable') == 1) 
         {
             $rules['goal'] = 'required|integer|gt:0';
+            $rules['unit_id'] = 'exists:habit_units,id';
         }
 
         return $rules;

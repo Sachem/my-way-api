@@ -62,6 +62,8 @@ class HabitResource extends JsonResource
             'priority' => $this->priority,
             'measurable' => $this->measurable,
             'goal' => $this->goal,
+            'unit_id' => $this->unit_id,
+            'unit' => $this->unit_id ? $this->habit_unit->name : null,
             'progress' => $progress,
         ];
     }

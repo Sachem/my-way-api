@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('habits', function (Blueprint $table) {
             $table->foreign(['category_id'], 'fk_habits_habit_categories1')->references(['id'])->on('habit_categories')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign(['unit_id'], 'fk_habits_habit_units1')->references(['id'])->on('habit_units')->onUpdate('NO ACTION')->onDelete('NO ACTION');
             $table->foreign(['user_id'], 'fk_habits_users1')->references(['id'])->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
@@ -28,6 +29,7 @@ return new class extends Migration
     {
         Schema::table('habits', function (Blueprint $table) {
             $table->dropForeign('fk_habits_habit_categories1');
+            $table->dropForeign('fk_habits_habit_units1');
             $table->dropForeign('fk_habits_users1');
         });
     }

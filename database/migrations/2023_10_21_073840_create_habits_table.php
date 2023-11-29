@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable()->index('fk_habits_users1_idx');
             $table->unsignedInteger('category_id')->index('fk_habits_habit_categories1_idx');
+            $table->unsignedInteger('unit_id')->index('fk_habits_habit_inits1_idx');
             $table->string('name', 60)->nullable();
             $table->unsignedInteger('priority')->nullable();
             $table->tinyInteger('measurable')->nullable();

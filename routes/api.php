@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
     Route::apiResource('habits', HabitController::class);
-    Route::get('/habit/categories', [HabitController::class, 'categories']);
+    Route::get('/habit/meta', [HabitController::class, 'meta']);
 
     Route::post('/habit/mark-completed/{habit}', [HabitProgressController::class, 'markCompleted']);
     Route::post('/habit/change-progress/{habit}', [HabitProgressController::class, 'changeProgress']);

@@ -8,6 +8,7 @@ use App\Http\Resources\HabitResource;
 use App\Http\Resources\HabitCollection;
 use App\Models\Habit;
 use App\Models\HabitCategory;
+use App\Models\HabitUnit;
 
 class HabitController extends Controller
 {
@@ -16,7 +17,7 @@ class HabitController extends Controller
      */
     public function index()
     {
-        $habits = Habit::with('recent_progress')
+        $habits = Habit::with('recent_progress', 'habit_unit')
             ->where('user_id', auth()->user()->id)
             ->get();
         
@@ -36,6 +37,7 @@ class HabitController extends Controller
         $habit->name = $validated['name'];
         $habit->measurable = $validated['measurable'];
         $habit->goal = $validated['goal'] ?? NULL;
+        $habit->unit_id = $validated['unit_id'] ?? NULL;
         $habit->save();
 
         $habit->load('recent_progress');
@@ -84,11 +86,15 @@ class HabitController extends Controller
     /**
      * Display a listing of habt categories.
      */
-    public function categories()
+    public function meta()
     {
         $categories = HabitCategory::all();
+        $units = HabitUnit::all();
         
-        return response()->json($categories, 200);
+        return response()->json([
+            'categories' => $categories,
+            'units' => $units
+        ], 200);
         
     }
 }

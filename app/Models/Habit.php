@@ -48,12 +48,18 @@ class Habit extends Model
 		'name',
 		'priority',
 		'measurable',
-		'goal'
+		'goal',
+		'unit_id'
 	];
 
 	public function habit_category()
 	{
 		return $this->belongsTo(HabitCategory::class, 'category_id');
+	}
+
+	public function habit_unit()
+	{
+		return $this->belongsTo(HabitUnit::class, 'unit_id');
 	}
 
 	public function user()
