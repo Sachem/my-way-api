@@ -28,7 +28,7 @@ class HabitCollection extends ResourceCollection
         $dates = [];
 
         $i = 0;
-        $finalDateString = Carbon::now()->subDays(15)->toDateString();
+        $finalDateString = Carbon::now()->subDays(config('habits.recent_progress_days_count'))->toDateString();
         $date = Carbon::now();
 
         while ($date->toDateString() != $finalDateString) 

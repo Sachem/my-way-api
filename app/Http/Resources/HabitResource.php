@@ -18,7 +18,7 @@ class HabitResource extends JsonResource
         $progress = [];
 
         $i = 0;
-        $finalDateString = Carbon::now()->subDays(15)->toDateString();
+        $finalDateString = Carbon::now()->subDays(config('habits.recent_progress_days_count'))->toDateString();
         $date = Carbon::now();
         $dateString = $date->toDateString();
 
@@ -33,7 +33,7 @@ class HabitResource extends JsonResource
                         $progress[$i] = [
                             'progress' => $day->progress,
                             'done' => $day->done,
-                            'date' => $dateString,
+                            'date' => convertPhpDateToJavaScript($dateString),
                         ];
 
                         continue;
@@ -46,7 +46,7 @@ class HabitResource extends JsonResource
                 $progress[$i] = [
                     'progress' => 0,
                     'done' => 0,
-                    'date' => $dateString,
+                    'date' => convertPhpDateToJavaScript($dateString),
                 ];
             }
 

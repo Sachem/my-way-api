@@ -29,8 +29,11 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::post('/habit/mark-completed/{habit}', [HabitProgressController::class, 'markCompleted']);
     Route::post('/habit/change-progress/{habit}', [HabitProgressController::class, 'changeProgress']);
-        
+    Route::get('/habit/load-progress/{habit}', [HabitProgressController::class, 'loadProgress']);
+    
 });
+
+
 
 Route::get('/', function (Request $request) {
     return response()->json('Hello, you requested "My Way" API\'s root path. Nothing here, but glad to see you :)', 200);

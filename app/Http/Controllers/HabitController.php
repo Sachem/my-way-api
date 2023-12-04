@@ -7,6 +7,7 @@ use App\Http\Requests\HabitRequest;
 use App\Http\Resources\HabitResource;
 use App\Http\Resources\HabitCollection;
 use App\Models\Habit;
+use App\Models\HabitDay;
 use App\Models\HabitCategory;
 use App\Models\HabitUnit;
 
@@ -84,7 +85,7 @@ class HabitController extends Controller
     }
 
     /**
-     * Display a listing of habt categories.
+     * Display listings of habit categories and progress units (for measurable).
      */
     public function meta()
     {
@@ -97,4 +98,5 @@ class HabitController extends Controller
         ], 200);
         
     }
+
 }

@@ -72,7 +72,8 @@ class Habit extends Model
 		return $this->hasMany(HabitDay::class);
 	}
 
-	public function recent_progress() {
-        return $this->habit_days()->where('date','>', Carbon::now()->subDays(15)->toDateString());
+	public function recent_progress() 
+	{
+        return $this->habit_days()->where('date','>', Carbon::now()->subDays(config('habits.recent_progress_days_count'))->toDateString());
     }
 }
