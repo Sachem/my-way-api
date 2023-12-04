@@ -40,4 +40,4 @@ Route::get('/', function (Request $request) {
 });
 
 Route::get('auth/socialite/{provider}', [SocialiteController::class, 'redirectToProvider']);
-Route::get('auth/socialite/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
+Route::get('auth/socialite/{provider}/callback/{accessToken?}', [SocialiteController::class, 'handleProviderCallback']);
