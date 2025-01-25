@@ -1,14 +1,16 @@
-API for My Way (habit tracking app / website)
+This is an API for `My Way` (habit tracking app / website)
 
-# Setting up Nginx and PHP-fpm in Laravel Sail
-Source code from [blog article](https://medium.com/p/f7b3c85187ed).
+Front-end here: https://github.com/Sachem/my-way-vue
+Or here: https://github.com/Sachem/my-way-react
 
+## Installation
 
-## Quick start
+1. Copy `.env.example`, into `.env`. 
+2. Fill:
+    GOOGLE_CLIENT_ID={your_key}
+    GOOGLE_CLIENT_SECRET={your_secret}
+    GOOGLE_REDIRECT_URI=http://localhost:8100/auth/google-callback
+3. Run `docker-compose up -d`
+4. Run `docker exec -it laravel_php bash` followed by `composer install` and `php artisan migrate`
 
-1. Copy and paste the files in this repo to your project. 
-2. Edit `nginx/sites/laravel.conf`
-3. Copy the values in `.env.example` to the actual .env file. 
-4. Edit your machine's host file if needed to add a custom domain.
-5. Run `docker-compose up -d` and enjoy!
 
