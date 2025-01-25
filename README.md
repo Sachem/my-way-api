@@ -11,6 +11,10 @@ Or here: https://github.com/Sachem/my-way-react
     GOOGLE_CLIENT_SECRET={your_secret}<br />
     GOOGLE_REDIRECT_URI=http://localhost:8100/auth/google-callback
 3. Run `docker-compose up -d`
-4. Run `docker exec -it laravel_php bash` followed by `composer install` and `php artisan migrate`
+4. Run `docker exec -it laravel_php bash` followed by: <br />
+    `composer install`  <br />
+    `php artisan key:generate` <br />
+    `php artisan migrate --seed` <br />
+    `chmod 777 storage/logs/laravel.log`
 
 
